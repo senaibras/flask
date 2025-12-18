@@ -1,10 +1,7 @@
-﻿import collections
-import json
-from flask import Flask, jsonify, request
-
+from flask import Blueprint, jsonify, request
 from categoria_repository import CategoriaRepository
 from categoria import Categoria
-from collections import OrderedDict
+
 
 import categoria_repository
 
@@ -71,12 +68,6 @@ def remover_categoria(id_categoria):
 
 
 
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
-
-
-
-
 
 
 
@@ -102,4 +93,5 @@ if __name__ == "__main__":
 #     nome = categoria.get("nome")
 
 #     return {'id':id,'nome':nome}
+
 
