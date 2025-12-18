@@ -3,7 +3,7 @@ from flask import Blueprint, request, jsonify
 from produto_repository import ProdutoRepository
 from produto import Produto
 
-produto_bp = Blueprint("produto_bp", __name__)
+produto_bp = Blueprint("produto", __name__)
 repo = ProdutoRepository()
 
 
@@ -91,3 +91,4 @@ def deletar_produto(produto_id):
     if not ok:
         return jsonify({"erro": "Produto não encontrado ou não deletado"}), 404
     return jsonify({"mensagem": "Produto deletado com sucesso"}), 200
+
