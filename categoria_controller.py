@@ -1,6 +1,5 @@
 ﻿import collections
 import json
-from fastapi.encoders import jsonable_encoder
 from flask import Flask, jsonify, request
 
 from categoria_repository import CategoriaRepository
@@ -103,3 +102,4 @@ if __name__ == "__main__":
 #     nome = categoria.get("nome")
 
 #     return {'id':id,'nome':nome}
+
