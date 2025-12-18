@@ -5,18 +5,18 @@ from categoria import Categoria
 
 import categoria_repository
 
-app = Flask(__name__)
+categoria_bp = Blueprint("categoria", __name__)
 
-@app.route("/ola", methods = ['GET'])
+@categoria_bp.route("/ola", methods = ['GET'])
 def ola():
     return "minha primeira API"
 
-@app.route("/clientes", methods = ['GET'])
+@categoria_bp.route("/clientes", methods = ['GET'])
 def listar_clientes():
      dados = [{"nome":"Leandro"}, {"nome":"Maria"}, {"nome":"Silvio"},{"nome":"Marta"}]
      return jsonify(dados)
     
-@app.route("/categorias", methods = ['GET'])
+@categoria_bp.route("/categorias", methods = ['GET'])
 def listar_categorias():
     repo = CategoriaRepository()
     dados = repo.find_all()
@@ -26,14 +26,14 @@ def listar_categorias():
 
     return jsonify(dados_retorno)
 
-@app.route("/categorias/<int:categoriaID>")
+@categoria_bp.route("/categorias/<int:categoriaID>")
 def buscar_por_id(categoriaID):
     repo = CategoriaRepository()
     categoria = repo.find_by_id(categoriaID)
     categoria_retorno = {"id":categoria[0], "nome":categoria[1], "descricao":categoria[2]}
     return jsonify(categoria_retorno)
 
-@app.route("/categorias", methods = ['POST'])
+@categoria_bp.route("/categorias", methods = ['POST'])
 def cadastrar_categoria():
     repo = CategoriaRepository()
     # recebendo os dados via protocolo POST http
@@ -54,7 +54,7 @@ def cadastrar_categoria():
             }), 201
 
 
-@app.route("/categorias/<int:id_categoria>", methods = ['DELETE'])
+@categoria_bp.route("/categorias/<int:id_categoria>", methods = ['DELETE'])
 def remover_categoria(id_categoria):
     #objeto de comunicação com o banco de dados
     repo =CategoriaRepository()
@@ -93,5 +93,6 @@ def remover_categoria(id_categoria):
 #     nome = categoria.get("nome")
 
 #     return {'id':id,'nome':nome}
+
 
 
